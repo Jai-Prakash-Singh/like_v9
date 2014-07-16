@@ -1,0 +1,131 @@
+{% load static %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<link rel="stylesheet" href="{% static "assets/css/style.css" %}"type="text/css" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(e) {
+	$('.nav li').click(function(){
+        $('.nav li a').removeClass('active');
+        $(this).find('a').addClass('active');
+    });
+	
+	$("#input_bx").focus(function(){
+    $("#input_bx").css("border","1px solid #000");
+  });
+  $("#input_bx").focusout(function(){
+    $("#input_bx").css("border","1px solid #ccc");
+  });
+});
+</script>
+</head>
+
+<body>
+<div class="container">
+<div class="nav">
+<ul>
+<li class="active"><a href="#">Web</a></li>
+<li><a href="#">Images</a></li>
+<li><a href="#">Video</a></li>
+<li><a href="#">News</a></li>
+<li><a href="#">Games</a></li>
+</ul>
+</div>
+
+<div class="search">
+                   <form action="/searchengine/" method="get">
+                        <input type="text"  name="q" id="input_bx" >
+                        <input type="submit" value="Search" id="search_btn" onclick="this.form.target='_blank';return true;" >
+                    </form>
+</div>
+<div class="social_bx">
+
+{% if s_obj %}
+
+    <ul>
+        {% for s in s_obj %}
+            <div class="s_bx">
+                <a href={{s.dimainlink}} target= "_blank" > <img  src ="/{{s.image.url}}"  width="100" height="100" />
+                <div class="social_fb"></div> </a>
+                <div class="text">{{s.dimainname}}</div> 
+            </div>
+        {% endfor %}
+    </ul>
+
+{% else %}
+    <p>No sites matched for active position.</p>
+{% endif %}
+
+</div>
+
+<div class="s_bx">
+	<div class="social_yahoo"></div>
+	<div class="text">faceook</div>
+</div>
+
+<div class="s_bx">
+	<div class="social_ebay"></div>
+	<div class="text">faceook</div>
+</div>
+
+<div class="s_bx">
+	<div class="social_jabong"></div>
+	<div class="text">faceook</div>
+</div>
+
+<div class="s_bx">
+	<div class="social_fable"></div>
+	<div class="text">faceook</div>
+</div>
+
+<div class="s_bx">
+	<div class="social_amazon"></div>
+        <img src="{% static "assets/images/amazon.jpg" %}" /> 
+        <img src="{% static "assets/images/fb_1.jpeg" %}" />
+	<div class="text">faceook</div>
+</div>
+
+<div class="s_bx">
+	<div class="social_fb"></div>
+    <div class="text">faceook</div>
+</div>
+
+<div class="s_bx">
+	<div class="social_utube"></div>
+    <div class="text">faceook</div>
+</div>
+
+<div class="s_bx">
+	<div class="social_yahoo"></div>
+	<div class="text">faceook</div>
+</div>
+
+<div class="s_bx">
+	<div class="social_ebay"></div>
+	<div class="text">faceook</div>
+</div>
+
+<div class="s_bx">
+	<div class="social_jabong"></div>
+	<div class="text">faceooksdf</div>
+</div>
+
+<div class="s_bx">
+	<div class="social_fable"></div>
+	<div class="text">fac</div>
+</div>
+
+<div class="s_bx">
+	<div class="social_amazon"></div>
+	<div class="text">faceook</div>
+</div>
+
+</div>
+
+</div>
+</body>
+</html>

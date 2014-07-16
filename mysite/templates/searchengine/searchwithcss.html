@@ -1,0 +1,100 @@
+{% load static %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Khoobsurati</title> 
+
+<link rel="shortcut icon" href="http://images.khoobsurati.net/cat1/other/favicon.ico" />
+
+<link rel="stylesheet" href="{% static "css/style.css" %}"type="text/css" />
+<script type="text/javascript" src="{% static "js/jquery.min.js" %}"></script>
+<script type="text/javascript">
+$(document).ready(function(e) {
+	$('.nav li').click(function(){
+        $('.nav li a').removeClass('active');
+        $(this).find('a').addClass('active');
+    });
+	
+	$("#input_bx").focus(function(){
+    $("#input_bx").css("border","1px solid #000");
+  });
+  $("#input_bx").focusout(function(){
+    $("#input_bx").css("border","1px solid #ccc");
+  });
+});
+</script>
+
+        <script>
+            function call_counter(url) {
+                window.open(url);
+            }
+        </script>
+
+</head>
+
+<body bgcolor ="white">
+<div class="container">
+<div class="nav">
+<ul>
+<li class="active"><a href="#">Web</a></li>
+<li><a href="http://images.google.co.in/" target= "_blank" >Images</a></li>
+<li><a href="http://www.google.com/videohp" target= "_blank">Video</a></li>
+<li><a href="https://news.google.co.in/" target= "_blank">News</a></li>
+<li><a href="http://www.googlegames.in/" target= "_blank">Games</a></li>
+</ul>
+</div>
+
+<div class="search">
+                   <form action="/searchengine/" method="get">
+                        <input type="text"  name="q" id="input_bx" >
+                        <input type="submit" value="Search" id="search_btn" onclick="this.form.target='_blank';return true;" >
+                    </form>
+</div>
+<div class="social_bx">
+
+{% if s_obj %}
+
+    <ul>
+        {% for s in s_obj %}
+            <div class="s_bx">
+                {# <a href={{s.dimainlink}} target= "_blank" > <img  src ="/{{s.image.url}}"  width="48" height="48" /> </a> #}
+                <button type="submit" onclick="call_counter('searchengine/page/onclick/st/{{s.dimainname}}');" > 
+                <img src="{{s.image.url}}" width="55" height="55" /></button>
+
+                {% comment %}
+                <a href="/page/onclick/" target= "_blank" >
+                
+                    <input type="image" src="/{{s.image.url}}" name ="q" value="{{s.dimainname}}" alt="{{s.dimainname}}" width="48" height="48">
+                </a>
+                {% endcomment %}
+                <div class="text">{{s.dimainname}}</div> 
+            </div>
+        {% endfor %}
+    </ul>
+
+{% else %}
+    <p>No sites matched for active position.</p>
+{% endif %}
+
+
+</div>
+{% if d_obj %}
+    <div id="iframe-ad" style="margin:20px auto ;width:300px;height:340px; display:flex;">
+    <iframe title="YouTube video player" class="youtube-player" type="text/html" 
+    width="300" height="250" src="{{d_obj.urllink}}"
+    frameborder="0" allowFullScreen></iframe>
+    </div>
+{% else %}
+    <p>No sites matched for active position.</p>
+{% endif %}
+
+
+</div>
+
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<html>
+<head>
+    <title>Search</title>
+</head>
+<body>
+    <form action="/searchengine/" method="get">
+        <input type="text" name="q">
+        <input type="submit" value="Search" onclick="this.form.target='_blank';return true;">
+    </form>
+
+
+    {% if s_obj %}
+ 
+        <ul>
+            {% load static %}
+            {% for s in s_obj %}
+                {% comment %} <p>{{ s.image}} </p> {% endcomment %}
+                <li><a href={{s.dimainlink}} target= "_blank" > <img  src ="{%static s.image.url %}"  alt="{{s.dimainname}}" width="100" height="100" /> </a></li>
+            {% endfor %}
+        </ul>
+
+    {% else %}
+        <p>No sites matched for active position.</p>
+
+    {% endif %}
+
+</body>
+</html>
